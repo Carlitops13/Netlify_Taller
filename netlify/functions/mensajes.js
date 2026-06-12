@@ -1,5 +1,5 @@
 // netlify/functions/mensajes.js
-const { createClient } = require("@supabase/supabase-js");
+import { createClient } from "@supabase/supabase-js";
 
 const supabase = createClient(
   process.env.SUPABASE_URL,
@@ -14,7 +14,7 @@ function respuesta(statusCode, data) {
   };
 }
 
-exports.handler = async function(event) {
+export const handler = async function(event) {
   if (event.httpMethod === "GET") {
     const { data, error } = await supabase
       .from("mensajes")
